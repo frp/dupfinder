@@ -9,7 +9,23 @@ class MemoryDataStore extends DataStore {
   private val hashCount = Map[String, Int]()
   private val hashesWithDupes = Set[String]()
 
+  def removeFile(file: String) {
+    val hash = fileToHash(file)
+
+    fileToHash -= file
+    hashCount(hash) -= 1
+
+    if (hashCount(hash) == 1)
+      hashesWithDupes -= hash
+
+    hashToFiles(hash) -= file
+  }
+
   override def addFile(file: String, hash: String) {
+    if (fileToHash.contains(file)) {
+      removeFile(file)
+    }
+
     fileToHash += file -> hash
     hashToFiles.get(hash) match {
       case Some(set) => set += file

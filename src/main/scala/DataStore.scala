@@ -4,6 +4,7 @@
 import scala.collection.mutable.{Set, Map}
 
 trait DataStore {
+  def removeFile(file: String): Unit
   def addFile(file: String, hash: String): Unit
   def countDupes(file: String): Int
   def getAllDupesets: Map[String, Set[String]]

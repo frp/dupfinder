@@ -7,9 +7,10 @@ import org.apache.commons.codec.digest
  */
 object Main {
   def main(args: Array[String]): Unit = {
-    val walker = new DirectoryWalker(new MemoryDataStore)
-    walker.walk("/home/roman/myprograms")
-    for (set <- walker.getAllDupesets)
-      println(set)
+    val db = new DbDataStore
+//    val walker = new DirectoryWalker(new MemoryDataStore)
+//    walker.walk("/home/roman/myprograms")
+//    for (set <- walker.getAllDupesets)
+//      println(set)
   }
 }
