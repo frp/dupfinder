@@ -1,8 +1,8 @@
 import org.apache.commons.codec.digest.DigestUtils.sha1Hex
-
-import collection.mutable.Map
-import collection.mutable.Set
 import org.scalatest._
+import slick.driver.H2Driver.api._
+
+import scala.collection.mutable.{Set, Map}
 
 abstract class DataStoreTest extends FlatSpec with Matchers {
 
@@ -68,5 +68,7 @@ class MemoryDataStoreTest extends DataStoreTest {
 }
 
 class DbDataStoretest extends DataStoreTest {
-  def getStore = new DbDataStore
+  val db = Database.forConfig("h2test")
+
+  def getStore = new DbDataStore(db)
 }

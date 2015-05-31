@@ -2,8 +2,6 @@
  * Created by roman on 27.05.15.
  */
 
-import slick.lifted.ProvenShape
-
 import scala.collection.mutable.{Set, Map}
 import scala.concurrent.Await
 import scala.concurrent.duration._
@@ -29,8 +27,7 @@ class HashToCounts(tag: Tag) extends Table[(Option[Int], String, Int)](tag, "has
 // TODO: optimize this, a lot
 // May need changes to DataStore interface
 
-class DbDataStore extends DataStore {
-  private val db = Database.forConfig("h2mem1")
+class DbDataStore(db: Database) extends DataStore {
   private val hashes = TableQuery[FileHashes]
 
   {
