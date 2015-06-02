@@ -5,7 +5,7 @@
 import java.io.{FileInputStream, File}
 import org.apache.commons.codec.digest.DigestUtils
 
-class DirectoryWalker(storage: DataStore) {
+class DirectoryWalker(storage: DataStore, minFileSize: Long) {
 
   def walk(file: String): Unit = {
     walk(new File(file))
@@ -13,12 +13,17 @@ class DirectoryWalker(storage: DataStore) {
 
   def walk(file: File) {
     println("Walking " + file.getAbsolutePath)
-    if (file.isDirectory) {
-      for (f <- file.listFiles()) walk(f)
-    }
-    else if (file.isFile) {
-      val h = hash(file)
-      storage.addFile(file.getAbsolutePath, h)
+
+    // process file only if it is not a symlink
+    // this is needed in order to avoid possible loops
+    if (file.getAbsolutePath == file.getCanonicalPath) {
+      if (file.isDirectory) {
+        for (f <- file.listFiles()) walk(f)
+      }
+      else if (file.isFile && file.length() >= minFileSize) {
+        val h = hash(file)
+        storage.addFile(file.getAbsolutePath, h)
+      }
     }
   }
 
