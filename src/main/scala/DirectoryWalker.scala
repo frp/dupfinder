@@ -12,8 +12,6 @@ class DirectoryWalker(storage: DataStore, minFileSize: Long) {
   }
 
   def walk(file: File) {
-    println("Walking " + file.getAbsolutePath)
-
     // process file only if it is not a symlink
     // this is needed in order to avoid possible loops
     if (file.getAbsolutePath == file.getCanonicalPath) {

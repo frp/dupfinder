@@ -12,7 +12,8 @@ Usage
 
 Future plans
 ------------
-1. Make output easier to read (currently, it is just a dump of internal data structre)
+1. Make output easier to read ~~(currently, it is just a dump of internal data structre)~~
+  1. Improved: removed verbose debug logging, made output much prettier and easier to read
 2. Provide a web or GUI version.
 3. Provide ready-to-download-and-use builds
 4. Create a daemon watching FS for changes constantly.
