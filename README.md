@@ -9,6 +9,11 @@ Usage
 1. Download the last binary release here: https://github.com/frp/dupfinder/releases
 2. Run it like this: `java -jar dupfinder-assembly-<version>.jar <directory> <min_size>`, where min_size is miminal file size in kilobytes to process
 
+Git snapshot builds
+--------------------
+
+Snapshot builds are available as build artifacts on [CircleCI](https://circleci.com/gh/frp/dupfinder)
+
 Build
 -------
 * Tested with sbt 0.13.8, uses Scala 2.11.6.
