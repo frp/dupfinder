@@ -3,3 +3,7 @@ machine:
     - echo "deb http://dl.bintray.com/sbt/debian /" | sudo tee -a /etc/apt/sources.list.d/sbt.list
     - sudo apt-get update
     - sudo apt-get install -y sbt
+
+deployment:
+  override:
+    - mv target/scala-2.11/*.jar $CIRCLE_ARTIFACTS

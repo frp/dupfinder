@@ -1,6 +1,10 @@
-name := "dupfinder"
+val gitHeadCommitSha = settingKey[String]("current git commit SHA")
 
-version := "0.0.1"
+gitHeadCommitSha in ThisBuild := Process("git rev-parse HEAD").lines.head
+
+version in ThisBuild := "0.0.1-" + gitHeadCommitSha.value
+
+name := "dupfinder"
 
 scalaVersion := "2.11.6"
 
