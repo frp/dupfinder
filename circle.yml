@@ -5,5 +5,6 @@ machine:
     - sudo apt-get install -y sbt
 
 deployment:
-  override:
-    - mv target/scala-2.11/*.jar $CIRCLE_ARTIFACTS
+  production:
+    commands:
+      - mv target/scala-2.11/*.jar $CIRCLE_ARTIFACTS
